@@ -7,47 +7,47 @@ function App() {
         <img src="/images/image-omelette.jpeg" alt="food picture" />
       </div>
 
-      <div>
-        <div>
-          <h1 className="text-3xl font-bold underline text-center">
+      <div className="p-8 grid gap-y-8">
+        <div className="grid gap-y-6">
+          <h1 className="font-Youngserif text-4xl text-DarkCharcoal">
             Simple Omelette Recipe
           </h1>
-          <p>
+          <p className="font-Outfit text-wengeBrown opacity-60">
             An easy and quick dish, perfect for any meal. This classic omelette
             combines beaten eggs cooked to perfection, optionally filled with
             your choice of cheese, vegetables, or meats.
           </p>
         </div>
 
-        <div>
-          <h2>Preparation time</h2>
-          <ul>
-            <li>
+        <div className="bg-RoseWhite p-6 rounded-2xl font-Outfit grid gap-y-3">
+          <h2 className="font-OutfitBold text-DarkRaspberry text-xl">Preparation time</h2>
+          <ul className="list-disc px-5 text-wengeBrown opacity-60">
+            <li className="px-5">
               <b>Total</b>: Approximately 10 minutes
             </li>
-            <li>
+            <li className="px-5">
               <b>Preparation</b>: 5 minutes
             </li>
-            <li>
+            <li className="px-5">
               <b>Cooking</b>: 5 minutes
             </li>
           </ul>
         </div>
 
-        <div>
-          <h2>Ingredients</h2>
-          <ul>
-            <li>2-3 large eggs</li>
-            <li>Salt, to taste</li>
-            <li>Pepper, to taste</li>
-            <li>1 tablespoon of butter or oil</li>
-            <li>
+        <div className="grid gap-y-6">
+          <h2 className="text-3xl font-Youngserif text-Nutmeg">Ingredients</h2>
+          <ul className="list-disc font-Outfit px-5 text-wengeBrown opacity-60">
+            <li className="px-5">2-3 large eggs</li>
+            <li className="px-5">Salt, to taste</li>
+            <li className="px-5">Pepper, to taste</li>
+            <li className="px-5">1 tablespoon of butter or oil</li>
+            <li className="px-5">
               Optional fillings: cheese, diced vegetables, cooked meats, herbs
             </li>
           </ul>
         </div>
 
-        <hr />
+        <hr className="opacity-15"/>
 
         <div>
           <h2>Instructions</h2>
