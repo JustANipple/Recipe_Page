@@ -1,6 +1,25 @@
 import "./App.css";
+import { PrismaClient } from "@prisma/client";
 
 function App() {
+
+  const prisma = new PrismaClient();
+  const allRecipes = [];
+
+  async function main() {
+    allRecipes = await prisma.findMany();
+    console.log(allRecipes);
+  }
+
+  main().then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
+
   return (
     <main className="m-auto grid gap-y-9 bg-White md:my-32 md:max-w-desktop md:rounded-3xl md:p-10 md:pb-6">
       <div className="truncate md:rounded-xl">
