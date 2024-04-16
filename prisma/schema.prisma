@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,40 +7,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Recipe {
-  id            Int          @id @default(autoincrement())
-  name          String
-  description   String
-  preparation   Preparation  @relation(fields: [preparationId], references: [id]) //There's one preparation for every Recipe
-  preparationId Int //FK that connects Recipe and Preparation
-  ingredients   Ingredient[] //There are multiple ingredients for every Recipe
-  steps         Step[] //There are multiple steps for every Recipe
-  nutritions    Nutrition[] //There are multiple nutritions for every Recipe
+model ingredients {
+  Id       Int     @id @default(autoincrement())
+  Name     String? @db.VarChar
+  Quantity Int?
+  UM       String? @db.VarChar
 }
 
-model Preparation {
-  id              Int      @id @default(autoincrement())
-  preparationTime Int
-  cookingTime     Int
-  Recipe          Recipe[] //There are multiple recipes that could use one preparation
+model ingredientsRelationships {
+  RecipeId     Int
+  IngredientId Int
+
+  @@id([RecipeId, IngredientId])
 }
 
-model Ingredient {
-  id       Int     @id @default(autoincrement())
-  quantity String
-  Recipe   Recipe? @relation(fields: [recipeId], references: [id]) //There's one recipe for every Ingredient
-  recipeId Int? //FK that connects Recipe and Ingredients
+model instructions {
+  Id          Int     @id @default(autoincrement())
+  Description String? @db.VarChar
 }
 
-model Step {
-  id          Int     @id @default(autoincrement())
-  instruction String
-  Recipe      Recipe? @relation(fields: [recipeId], references: [id]) //There's one Recipe for every Step
-  recipeId    Int? //FK that connects Recipe and Steps
+model instructionsRelationships {
+  RecipeId      Int
+  InstructionId Int
+
+  @@id([RecipeId, InstructionId])
 }
 
-model Nutrition {
-  id       Int     @id @default(autoincrement())
-  Recipe   Recipe? @relation(fields: [recipeId], references: [id]) //There one Recipe for every Nutrition
-  recipeId Int? //FK that connects Recipe and Nutrition
+model preparations {
+  Id              Int  @id @default(autoincrement())
+  PreparationTime Int?
+  CookingTime     Int?
+}
+
+model preparationsRelationships {
+  RecipeId      Int
+  PreparationId Int
+
+  @@id([RecipeId, PreparationId])
+}
+
+model recipes {
+  Id          Int     @id @default(autoincrement())
+  ImageLink   String? @db.VarChar
+  Title       String? @db.VarChar
+  Description String? @db.VarChar
+  Carbs       Int?
+  Protein     Int?
+  Fat         Int?
 }
